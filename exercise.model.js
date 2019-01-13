@@ -1,14 +1,7 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-	username: String
-});
 
 const exerciseSchema = new mongoose.Schema({
-	userId: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true
-	},
 	description: {
 		type: String,
 		required: true
@@ -19,8 +12,17 @@ const exerciseSchema = new mongoose.Schema({
 	},
 	date: {
 		type: Date,
-		required: Date.now
+		default: new Date()
 	}
+});
+
+
+const userSchema = new mongoose.Schema({
+	username: {
+		type: String,
+		required: true
+	},
+	exercises: [exerciseSchema]
 });
 
 const User = mongoose.model("User", userSchema);
