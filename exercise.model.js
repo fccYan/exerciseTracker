@@ -14,7 +14,7 @@ const exerciseSchema = new mongoose.Schema({
 		type: Date,
 		default: new Date()
 	}
-});
+}, { versionKey: false });
 
 
 const userSchema = new mongoose.Schema({
@@ -22,8 +22,9 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	exercises: [exerciseSchema]
-});
+	exercises: [exerciseSchema],
+	
+}, { versionKey: false });
 
 const User = mongoose.model("User", userSchema);
 const Exercise = mongoose.model("Exercise", exerciseSchema);
